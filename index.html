@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VEX6 X TAHIM | PREMIUM RED EDITION</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #070708;
+            --surface: #0f1014;
+            --primary: #ff3b3b;
+            --secondary: #a10000;
+            --accent: #ff4b2b;
+            --text-main: #ffffff;
+            --text-dim: #94949b;
+            --border: rgba(255, 59, 59, 0.15);
+            --card-shadow: 0 20px 50px rgba(0, 0, 0, 0.9);
+            --neon-glow: 0 0 15px rgba(255, 59, 59, 0.4);
+        }
+
+        * {
+            margin: 0; padding: 0; box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text-main);
+            display: flex; justify-content: center; align-items: center;
+            min-height: 100vh; overflow-x: hidden;
+            background-image:
+                radial-gradient(circle at top right, rgba(255, 59, 59, 0.08), transparent 40%),
+                radial-gradient(circle at bottom left, rgba(255, 59, 59, 0.03), transparent 40%);
+        }
+
+        .container {
+            width: 90%; max-width: 380px;
+            z-index: 10;
+        }
+
+        .glass-card {
+            background: var(--surface);
+            border-radius: 32px;
+            padding: 30px 24px;
+            border: 1px solid var(--border);
+            box-shadow: var(--card-shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Decorative top-bar shine */
+        .glass-card::before {
+            content: ''; position: absolute; top: 0; left: 10%; right: 10%; height: 1.5px;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
+        }
+
+        /* Header UI */
+        .dash-nav {
+            display: flex; justify-content: space-between; align-items: center;
+            margin-bottom: 25px;
+        }
+        .profile { display: flex; align-items: center; gap: 14px; }
+
+        /* Premium Shield Logo */
+        .logo-v {
+            width: 58px; height: 58px;
+            background: #000; border: 2px solid var(--primary);
+            border-radius: 18px; display: flex; align-items: center; justify-content: center;
+            box-shadow: var(--neon-glow);
+            transform: rotate(-5deg); transition: 0.3s;
+        }
+        .logo-v i {
+            font-size: 1.8rem; color: var(--primary);
+            filter: drop-shadow(0 0 8px var(--primary));
+            transform: rotate(5deg);
+        }
+
+        .brand-text h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.05rem; font-weight: 900;
+            letter-spacing: 1.5px; color: #fff;
+            text-shadow: 0 0 10px rgba(255, 59, 59, 0.3);
+        }
+        .brand-text p { font-size: 0.55rem; color: var(--text-dim); text-transform: uppercase; font-weight: 700; letter-spacing: 2px; }
+
+        .live-pill {
+            padding: 4px 12px; border-radius: 20px;
+            background: rgba(255, 59, 59, 0.08); color: var(--primary);
+            font-size: 0.58rem; font-weight: 900; border: 1px solid rgba(255, 59, 59, 0.2);
+            display: flex; align-items: center; gap: 6px;
+            letter-spacing: 1px;
+        }
+        .live-pill::before {
+            content: ''; width: 6px; height: 6px;
+            background: var(--primary); border-radius: 50%;
+            box-shadow: 0 0 8px var(--primary);
+            animation: pulse 1.5s infinite;
+        }
+        @keyframes pulse { 0% { opacity: 0.4; } 50% { opacity: 1; } 100% { opacity: 0.4; } }
+
+        /* Status Bar */
+        .status-bar {
+            background: #09090b; border-radius: 18px;
+            padding: 12px 18px; display: flex; justify-content: space-between;
+            align-items: center; margin-bottom: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+        }
+        .ip-info { display: flex; align-items: center; gap: 10px; font-size: 0.72rem; color: var(--text-dim); font-weight: 600; }
+        .ip-info i { color: var(--primary); font-size: 0.85rem; }
+        .auth-badge {
+            font-size: 0.58rem; font-weight: 900; color: var(--primary);
+            background: rgba(255, 59, 59, 0.1); padding: 4px 12px; border-radius: 12px;
+            display: flex; align-items: center; gap: 5px; letter-spacing: 0.5px;
+        }
+
+        /* Action Button */
+        .btn-start {
+            width: 100%; height: 56px; border-radius: 18px;
+            border: none; background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white; font-weight: 900; font-size: 0.85rem;
+            cursor: pointer; transition: 0.3s;
+            display: flex; justify-content: center; align-items: center; gap: 12px;
+            box-shadow: 0 12px 30px rgba(255, 0, 0, 0.2);
+            margin-bottom: 25px; text-transform: uppercase; letter-spacing: 1px;
+        }
+        .btn-start:active { transform: scale(0.96); }
+
+        /* Login Layout */
+        #loginView { display: block; text-align: center; }
+        .login-hero { margin-bottom: 35px; }
+        .hero-v {
+            width: 90px; height: 90px; background: #000;
+            border: 2.5px solid var(--primary); border-radius: 25px;
+            margin: 0 auto 20px; display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 0 30px rgba(255, 59, 59, 0.3);
+            transform: rotate(45deg);
+        }
+        .hero-v i { font-size: 2.5rem; color: var(--primary); transform: rotate(-45deg); }
+
+        .login-header-text h1 {
+            font-family: 'Orbitron', sans-serif; font-size: 1.6rem;
+            font-weight: 900; letter-spacing: 3px;
+            background: linear-gradient(to bottom, #fff, #bbb);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            margin-bottom: 5px;
+        }
+        .login-header-text p { font-size: 0.65rem; color: var(--primary); font-weight: 800; letter-spacing: 5px; text-transform: uppercase; }
+
+        .input-box {
+            background: #09090b; border: 1.5px solid var(--border);
+            border-radius: 18px; padding: 16px 22px;
+            display: flex; align-items: center; gap: 15px; margin-bottom: 22px;
+            transition: 0.3s;
+        }
+        .input-box:focus-within { border-color: var(--primary); background: #0c0c0f; box-shadow: 0 0 15px rgba(255, 59, 59, 0.1); }
+        .input-box input {
+            background: transparent; border: none; color: white;
+            outline: none; width: 100%; font-size: 0.85rem; font-weight: 700;
+            letter-spacing: 1px;
+        }
+        .input-box i { color: var(--primary); }
+
+        /* Dashboard Sections */
+        #dashboard { display: none; }
+        .sec-label {
+            font-size: 0.62rem; color: var(--text-dim); font-weight: 900;
+            text-transform: uppercase; letter-spacing: 2px;
+            margin: 28px 0 14px 8px; display: flex; align-items: center; gap: 12px;
+        }
+        .sec-label::after { content: ''; flex: 1; height: 1.5px; background: linear-gradient(90deg, var(--border), transparent); }
+
+        .mod-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+        .mod-item {
+            background: #09090b; border: 1px solid var(--border);
+            border-radius: 20px; padding: 15px 18px;
+            display: flex; justify-content: space-between; align-items: center;
+            transition: 0.3s;
+        }
+        .mod-item:hover { border-color: var(--primary); background: #0c0c0f; }
+        .mod-item span { font-size: 0.8rem; font-weight: 800; color: #fff; letter-spacing: 0.5px; }
+        .mod-item small { font-size: 0.5rem; color: var(--text-dim); text-transform: uppercase; display: block; margin-top: 2px; font-weight: 700; }
+
+        /* Toggle Switches */
+        .switch { position: relative; width: 38px; height: 20px; }
+        .switch input { opacity: 0; width: 0; height: 0; }
+        .slider {
+            position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0;
+            background-color: #1c1c21; transition: .4s; border-radius: 20px;
+            border: 1px solid #333;
+        }
+        .slider:before {
+            position: absolute; content: ""; height: 14px; width: 14px;
+            left: 3px; bottom: 3px; background-color: white;
+            transition: .4s; border-radius: 50%;
+        }
+        input:checked + .slider { background-color: var(--primary); border-color: transparent; }
+        input:checked + .slider:before { transform: translateX(18px); }
+
+        /* Velocity UI */
+        .velocity-box {
+            background: #09090b; border: 1px solid var(--border);
+            border-radius: 22px; padding: 22px;
+        }
+        .v-header { display: flex; justify-content: space-between; margin-bottom: 18px; }
+        .v-header span { font-size: 0.75rem; font-weight: 800; color: var(--text-dim); display: flex; align-items: center; gap: 8px; text-transform: uppercase; }
+        .v-header span i { color: var(--primary); }
+        .v-header b { color: var(--primary); font-size: 1rem; font-family: 'Orbitron', sans-serif; text-shadow: 0 0 10px rgba(255, 59, 59, 0.4); }
+
+        .range-slider {
+            width: 100%; height: 6px; background: #1c1c21;
+            border-radius: 10px; outline: none; -webkit-appearance: none;
+        }
+        .range-slider::-webkit-slider-thumb {
+            -webkit-appearance: none; width: 22px; height: 22px;
+            background: #fff; border: 5px solid var(--primary); border-radius: 50%; cursor: pointer;
+            box-shadow: 0 0 12px var(--primary);
+        }
+
+        .footer {
+            margin-top: 35px; text-align: center;
+            font-size: 0.65rem; color: var(--text-dim); font-weight: 800; letter-spacing: 1px;
+        }
+        .footer b { color: var(--primary); text-shadow: 0 0 5px var(--primary); }
+
+        .fade-in { animation: fadeIn 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px) scale(0.96); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Login Panel -->
+        <div id="loginView" class="glass-card fade-in">
+            <div class="login-hero">
+                <div class="hero-v">
+                    <i class="fas fa-microchip"></i>
+                </div>
+                <div class="login-header-text">
+                    <h1>VEX6 X TAHIM</h1>
+                    <p>PREMIUM CORE</p>
+                </div>
+            </div>
+
+            <div class="input-box">
+                <i class="fas fa-fingerprint"></i>
+                <input type="text" id="accessKey" placeholder="LICENSE KEY" value="VEX6-FREE-2024">
+            </div>
+
+            <button class="btn-start" onclick="handleLogin()">
+                INITIALIZE ACCESS
+            </button>
+
+            <a href="https://t.me/VEX6_OFFICIAL" style="text-decoration: none;">
+                <button class="btn-start" style="background: rgba(255, 255, 255, 0.03); height: 48px; font-size: 0.75rem; box-shadow: none; border: 1.5px solid rgba(255, 255, 255, 0.1); color: #fff;">
+                    <i class="fab fa-telegram-plane"></i> JOIN OFFICIAL CHANNEL
+                </button>
+            </a>
+
+            <div class="footer">
+                STATION ID: <b>@Vyexxx0</b>
+            </div>
+        </div>
+
+        <!-- Dashboard Panel -->
+        <div id="dashboard" class="glass-card fade-in">
+            <div class="dash-nav">
+                <div class="profile">
+                    <div class="logo-v">
+                        <i class="fas fa-satellite-dish"></i>
+                    </div>
+                    <div class="brand-text">
+                        <h2>VEX6 CORE</h2>
+                        <p>User Status: Verified</p>
+                    </div>
+                </div>
+                <div class="live-pill">LIVE</div>
+            </div>
+
+            <div class="status-bar">
+                <div class="ip-info">
+                    <i class="fas fa-globe"></i>
+                    <span id="ipAddr">FETCHING...</span>
+                </div>
+                <div class="auth-badge">
+                    <i class="fas fa-key"></i> Authorized
+                </div>
+            </div>
+
+            <button class="btn-start" id="proxyBtn" onclick="toggleProxy()">
+                <i class="fas fa-play"></i> EXECUTE PROXY
+            </button>
+
+            <div class="sec-label">Combat assistance</div>
+            <div class="mod-grid">
+                <div class="mod-item">
+                    <div class="info">
+                        <span>HS NECK</span>
+                        <small>Bio-Lock</small>
+                    </div>
+                    <label class="switch"><input type="checkbox"><span class="slider"></span></label>
+                </div>
+                <div class="mod-item">
+                    <div class="info">
+                        <span>HS CHEST</span>
+                        <small>Auto Track</small>
+                    </div>
+                    <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
+                </div>
+            </div>
+
+            <div class="sec-label">System Configuration</div>
+            <div class="mod-grid" style="margin-bottom: 25px;">
+                <div class="mod-item">
+                    <div class="info"><span>BYPASS V4</span><small>Elite</small></div>
+                    <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
+                </div>
+                <div class="mod-item">
+                    <div class="info"><span>NO SWAP</span><small>Stable</small></div>
+                    <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
+                </div>
+                <div class="mod-item">
+                    <div class="info"><span>BACKJUMP</span><small>Safe</small></div>
+                    <label class="switch"><input type="checkbox"><span class="slider"></span></label>
+                </div>
+                <div class="mod-item">
+                    <div class="info"><span>HIGH JUMP</span><small>Risk</small></div>
+                    <label class="switch"><input type="checkbox"><span class="slider"></span></label>
+                </div>
+                <div class="mod-item">
+                    <div class="info"><span>ZIG ZAG</span><small>Auto</small></div>
+                    <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
+                </div>
+                <div class="mod-item">
+                    <div class="info"><span>HI-SENSI</span><small>Elite</small></div>
+                    <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
+                </div>
+            </div>
+
+            <div class="sec-label">Velocity Multiplier</div>
+            <div class="velocity-box" style="margin-bottom: 25px;">
+                <div class="v-header">
+                    <span><i class="fas fa-bolt"></i> Speed Value</span>
+                    <b id="speedVal">2.0x</b>
+                </div>
+                <input type="range" min="1.0" max="10.0" step="0.1" value="2.0" class="range-slider" id="speedSlider">
+            </div>
+
+            <a href="https://t.me/VEX6_OFFICIAL" style="text-decoration: none;">
+                <button class="btn-start" style="background: rgba(255, 255, 255, 0.03); height: 48px; font-size: 0.75rem; box-shadow: none; border: 1.5px solid rgba(255, 255, 255, 0.1); color: #fff;">
+                    <i class="fab fa-telegram-plane"></i> JOIN OFFICIAL CHANNEL
+                </button>
+            </a>
+
+            <div class="footer">
+                @Vyexxx0 | <span onclick="location.reload()" style="cursor:pointer; text-decoration: underline;">TERMINATE</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const KEY = "VEX6-FREE-2024";
+        const BASE_URL = "http://127.0.0.1:8080"; // Niku mods ka default port aksar 8080 ya 9999 hota hai
+        let isRunning = false;
+
+        // Function to talk to the Game Engine
+        async function sendFeatureRequest(feature, state) {
+            try {
+                // Ye request game engine (C++) receive karega
+                await fetch(`${BASE_URL}/api?feature=${feature}&state=${state}`);
+                console.log(`Sent: ${feature} = ${state}`);
+            } catch (e) {
+                console.log("Not connected to engine yet");
+            }
+        }
+
+        function handleLogin() {
+            const val = document.getElementById('accessKey').value;
+            const btn = document.querySelector('.btn-start');
+
+            if (val === KEY || val === "tahim" || val === "vyexxx0") {
+                btn.innerHTML = '<i class="fas fa-circle-notch fa-spin"></i> SYNCING CORE...';
+                setTimeout(() => {
+                    document.getElementById('loginView').style.display = 'none';
+                    document.getElementById('dashboard').style.display = 'block';
+                }, 1200);
+            } else {
+                alert("ACCESS DENIED: Unauthorized License Token");
+            }
+        }
+
+        function toggleProxy() {
+            const btn = document.getElementById('proxyBtn');
+            isRunning = !isRunning;
+            if(isRunning) {
+                btn.innerHTML = '<i class="fas fa-stop"></i> STOP PROTOCOL';
+                btn.style.background = 'linear-gradient(to right, #ff3b3b, #660000)';
+                sendFeatureRequest("proxy", "on");
+            } else {
+                btn.innerHTML = '<i class="fas fa-play"></i> EXECUTE PROXY';
+                btn.style.background = 'linear-gradient(to right, var(--primary), var(--secondary))';
+                sendFeatureRequest("proxy", "off");
+            }
+        }
+
+        // Add event listeners to all switches automatically
+        document.querySelectorAll('.switch input').forEach(sw => {
+            sw.addEventListener('change', function() {
+                const featureName = this.closest('.mod-item').querySelector('span').innerText;
+                sendFeatureRequest(featureName.replace(/\s+/g, '_').toLowerCase(), this.checked ? "on" : "off");
+            });
+        });
+
+        const slider = document.getElementById('speedSlider');
+        const display = document.getElementById('speedVal');
+        slider.oninput = function() {
+            display.innerHTML = parseFloat(this.value).toFixed(1) + 'x';
+            sendFeatureRequest("speed", this.value);
+        }
+
+        function genIP() {
+            const r = () => Math.floor(Math.random() * 255);
+            return `${r()}.${r()}.${r()}.${r()}`;
+        }
+        document.getElementById('ipAddr').innerText = genIP();
+    </script>
+</body>
+</html>
